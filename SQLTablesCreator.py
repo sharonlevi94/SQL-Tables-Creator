@@ -1,14 +1,16 @@
 import psycopg2
 import os
 
+
+directory = str(input("Please enter a directory path:\n"))
 sql = ''''''
-directoryURL = 'C:\Program Files\PostgreSQL\Data\mydata'
-for fileName in os.listdir(directoryURL):
+
+for fileName in os.listdir(directory):
     tableName = fileName.split(".")[0]
 
     sql += "copy " + tableName + "\n"\
            "from " \
-           "'{}\{}'".format(directoryURL, fileName) + "\n" \
+           "'{}\{}'".format(directory, fileName) + "\n" \
            "delimiter ','" + "\n"\
            "csv header;\n" + "\n"
 print(sql)
